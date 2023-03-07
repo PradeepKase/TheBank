@@ -73,12 +73,14 @@ public class AccountServiceImpl implements AccountServices{
 	public Account withdrawAmount(Integer accno, Integer amount) throws AccountException, InsufficentBalanceException {
 		// TODO Auto-generated method stub
 		Account ac= adao.findById(accno).orElseThrow(()->new AccountException("Account not found"));
+		System.out.println(ac);
 		if(ac.getAmount()<amount) {
 			throw new InsufficentBalanceException("you have less amount");
 		}
 		else{
 			ac.setAmount(ac.getAmount()-amount);
 			return adao.save(ac);
+			
 		}
 	}
 

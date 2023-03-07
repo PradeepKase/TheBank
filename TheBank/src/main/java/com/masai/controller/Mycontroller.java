@@ -55,13 +55,13 @@ public class Mycontroller {
 		return new ResponseEntity<List<Account>>(accounts, HttpStatus.OK);
 	}
 	
-	@PutMapping("/Depositamout/{accno}")
-	public ResponseEntity<Account> dipositHandler(@PathVariable("accno") Integer accno, @RequestParam("amount") Integer amount) throws AccountException{
+	@PutMapping("/Depositamout/{accno}/{amount}")
+	public ResponseEntity<Account> dipositHandler(@PathVariable("accno") Integer accno, @PathVariable("amount") Integer amount) throws AccountException{
 		Account account= accountservices.depositAmmount(accno, amount);
 		return new ResponseEntity<Account>(account, HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/Depositamout/{accno}/{amount}")
+	@PutMapping("/Withdrawamout/{accno}/{amount}")
 	public ResponseEntity<Account> withdrawHandler(@PathVariable("accno") Integer accno, @PathVariable("amount") Integer amount) throws AccountException, InsufficentBalanceException{
 		Account account= accountservices.withdrawAmount(accno, amount);
 		return new ResponseEntity<Account>(account,HttpStatus.CREATED);
